@@ -1,0 +1,40 @@
+{
+  "schema_version": 2,
+  "pdd_version": "0.0.308",
+  "timestamp_utc": "20260725T204131Z",
+  "argv": [
+    "auth",
+    "login"
+  ],
+  "cwd": "C:\\Users\\jorge\\Video-Analysis\\Video-Analysis-AI-Agent",
+  "platform": {
+    "system": "Windows",
+    "release": "11",
+    "version": "10.0.26200",
+    "python": "3.14.6 (main, Jul 18 2026, 17:08:46) [MSC v.1944 64 bit (AMD64)]"
+  },
+  "global_options": {
+    "force": false,
+    "strength": null,
+    "temperature": null,
+    "time": 0.25,
+    "verbose": false,
+    "quiet": false,
+    "local": false,
+    "context": null,
+    "output_cost": null,
+    "review_examples": false
+  },
+  "invoked_subcommands": [],
+  "total_cost": 0.0,
+  "steps": [],
+  "errors": [],
+  "environment": {
+    "PATH": "C:\\WINDOWS\\system32;C:\\WINDOWS;C:\\WINDOWS\\System32\\Wbem;C:\\WINDOWS\\System32\\WindowsPowerShell\\v1.0\\;C:\\WINDOWS\\System32\\OpenSSH\\;C:\\Program Files\\Git\\bin;C:\\Program Files (x86)\\GitExtensions\\;C:\\Program Files\\dotnet\\;C:\\Program Files\\nodejs\\;C:\\Program Files\\PowerShell\\7\\;C:\\Users\\jorge\\.local\\bin;C:\\Users\\jorge\\AppData\\Local\\Microsoft\\WindowsApps;C:\\Users\\jorge\\AppData\\Local\\Programs\\Microsoft VS Code\\bin;C:\\intelFPGA_lite\\23.1std\\questa_fse\\win64;C:\\Users\\jorge\\AppData\\Roaming\\npm",
+    "PDD_PATH": "C:\\Users\\jorge\\AppData\\Roaming\\uv\\tools\\pdd-cli\\Lib\\site-packages\\pdd"
+  },
+  "file_contents": {
+    "C:\\Users\\jorge\\.pdd\\llm_model.csv": "provider,model,input,output,coding_arena_elo,model_rank_score,model_rank_source,base_url,api_key,max_reasoning_tokens,structured_output,reasoning_type,location,interactive_only,context_limit\nAnthropic,claude-opus-4-7,5.0,25.0,1565,15400,deepswe-solve-rate,,ANTHROPIC_API_KEY,16000,True,adaptive,,False,\nAnthropic,claude-sonnet-4-6,3.0,15.0,1525,13200,deepswe-solve-rate,,ANTHROPIC_API_KEY,128000,True,budget,,False,\nAnthropic,claude-opus-4-8,5.0,25.0,1575,1575,static,,ANTHROPIC_API_KEY,16000,True,adaptive,,False,\nAnthropic,claude-opus-4-6,5.0,25.0,1548,1548,arena-elo-fallback,,ANTHROPIC_API_KEY,128000,True,budget,,False,\nAnthropic,claude-opus-4-5,5.0,25.0,1468,1468,arena-elo-fallback,,ANTHROPIC_API_KEY,128000,True,budget,,False,\nAnthropic,claude-sonnet-4-5,3.0,15.0,1386,1386,arena-elo-fallback,,ANTHROPIC_API_KEY,128000,True,budget,,False,\nAnthropic,claude-4-sonnet-20250514,3.0,15.0,1350,1350,static-prefix,,ANTHROPIC_API_KEY,128000,True,budget,,False,\nAnthropic,claude-haiku-4-5,1.0,5.0,1316,1316,arena-elo-fallback,,ANTHROPIC_API_KEY,128000,True,budget,,False,\n"
+  },
+  "terminal_output": "=== STDOUT ===\nChecking for updates...\nTo authenticate, visit: https://github.com/login/device\nEnter code: 6A37-A39E\nOpening browser for authentication...\nWaiting for authentication...\nAuthentication successful!\nSuccessfully authenticated to PDD Cloud.\n\n--- Command Execution Summary ---\n  Context compression: off; fallback policy: full\n-------------------------------------\n"
+}
