@@ -1,0 +1,3 @@
+Create a python module that reads a video description file with .scene extension and stores the description ina sqllite DB. Also generate the scema for the sqllite DB. The .scene file should be an arguement to the script.
+
+Please use the example scene description in test.scene for template of scene description.
