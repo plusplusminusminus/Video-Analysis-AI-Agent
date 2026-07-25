@@ -1,0 +1,8 @@
+Create a python module that reads a video scene description from a .db file and a video mp4 file. It decodes the video and compares with the scene description. It then produces an output for each shot in the video with the following output.
+
+  - Valid: True or False
+  - Issues
+    List of issues
+  - Score on a scale of 0-100. 100 for fully matching and 0 for nothing matching.
+
+Generate the output in a json format.
