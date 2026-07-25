@@ -29,7 +29,10 @@ This PRD defines a new context application composed of two coupled systems. The 
 
 The development-phase posture optimizes for diagnostic depth and iteration speed over throughput and cost. The central artifact is a closed loop: change the agent (prompt, model, sampling strategy) → run the eval suite → compare per-dimension deltas against the prior run → inspect regressions in a failure gallery → form a hypothesis → change again. Every component in this document exists to serve that loop.
 
-Architecture follows the established stack: Flask / SQLAlchemy / MySQL, Claude vision API for the Perception Agent and a pinned second Claude instance as LLM judge, 9-character alphanumeric primary keys via generate\_pk(), and a Flask-served failure gallery as the primary debugging surface
+Architecture follows the established stack: Flask / SQLAlchemy / MySQL
+Core workflow needs two versions for a/b testing - we want to be able to switch between the two:
+1 Claude vision API for the Perception Agent and a pinned second Claude instance as LLM judge, 9-character alphanumeric primary keys via generate\_pk(), and a Flask-served failure gallery as the primary debugging surface
+2. RocketRide - research and flesh out this version using available online materials
 
 Our vision is:
 we want to enable an agent to view video clips, and photos and validate the objects, people and content in specific scenes. 
