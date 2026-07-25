@@ -29,7 +29,18 @@ This PRD defines a new context application composed of two coupled systems. The 
 
 The development-phase posture optimizes for diagnostic depth and iteration speed over throughput and cost. The central artifact is a closed loop: change the agent (prompt, model, sampling strategy) → run the eval suite → compare per-dimension deltas against the prior run → inspect regressions in a failure gallery → form a hypothesis → change again. Every component in this document exists to serve that loop.
 
-Architecture follows the established stack: Flask / SQLAlchemy / MySQL, Claude vision API for the Perception Agent and a pinned second Claude instance as LLM judge, 9-character alphanumeric primary keys via generate\_pk(), and a Flask-served failure gallery as the primary debugging surface.
+Architecture follows the established stack: Flask / SQLAlchemy / MySQL, Claude vision API for the Perception Agent and a pinned second Claude instance as LLM judge, 9-character alphanumeric primary keys via generate\_pk(), and a Flask-served failure gallery as the primary debugging surface
+
+Our vision is:
+we want to enable an agent to view video clips, and photos and validate the objects, people and content in specific scenes. 
+
+We will also build an eval pipeline to evaluate thinking of this agent.
+
+eval must provide context and categorize these items and provide feedback on what they are. 
+
+Detection — what's in the frame? Objects, faces/people, scenes, text, actions (for video). This is where vision models do the raw work: bounding boxes, segmentation, tracking across frames.
+Contextualization — what does it mean here? A knife on a kitchen counter is a utensil; a knife in a hallway is an anomaly. Context comes from location, time, prior frames, and known household/user data. This is where an LLM with vision (Claude's vision API handles images natively) adds reasoning on top of raw detection.
+Feedback/Eval — the system's verdict: category, confidence, description in plain language, and any action implication ("this is a package at the door — PAA-03 retrieval candidate" or "unrecognized person — ESCALATE per Ethics/Safety Rules Engine").
 
 # **3\. Goals & Non-Goals**
 
