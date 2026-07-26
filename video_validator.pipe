@@ -1,0 +1,134 @@
+{
+  "components": [
+    {
+      "id": "webhook_1",
+      "provider": "webhook",
+      "name": "Validation Intake",
+      "description": "Receives per-shot vision findings + scene definition as text.",
+      "config": {
+        "hideForm": true,
+        "mode": "Source",
+        "parameters": {},
+        "type": "webhook"
+      },
+      "ui": {
+        "position": {
+          "x": 12,
+          "y": 12
+        },
+        "nodeType": "default",
+        "formDataValid": true
+      }
+    },
+    {
+      "id": "question_1",
+      "provider": "question",
+      "name": "As Question",
+      "config": {
+        "type": "question"
+      },
+      "ui": {
+        "position": {
+          "x": 242,
+          "y": 70.5
+        },
+        "nodeType": "default",
+        "formDataValid": true
+      },
+      "input": [
+        {
+          "lane": "text",
+          "from": "webhook_1"
+        }
+      ]
+    },
+    {
+      "id": "prompt_1",
+      "provider": "prompt",
+      "name": "Aggregation Instructions",
+      "config": {
+        "instructions": [
+          "You are a senior video QA analyst. You are given (1) a scene definition and (2) an array of per-shot vision findings, each with shot_index, timestamp, Valid, Issues, and Score.",
+          "Synthesize an overall analysis of how well the video matches the scene definition.",
+          "Return ONLY a strict JSON object (no markdown, no prose) with this exact shape: {\"overall_valid\": boolean, \"overall_score\": integer 0-100, \"pass_rate\": number 0-1, \"summary\": string, \"key_issues\": [string], \"recommendations\": [string], \"shots\": [{\"shot_index\": integer, \"timestamp\": number, \"Valid\": boolean, \"Issues\": [string], \"Score\": integer}]}.",
+          "overall_score is the mean of shot Scores rounded to an integer. pass_rate is the fraction of shots with Valid=true. Preserve every shot from the input in the shots array."
+        ]
+      },
+      "ui": {
+        "position": {
+          "x": 472,
+          "y": 38.5
+        },
+        "nodeType": "default",
+        "formDataValid": true
+      },
+      "input": [
+        {
+          "lane": "questions",
+          "from": "question_1"
+        }
+      ]
+    },
+    {
+      "id": "llm_openai_api_1",
+      "provider": "llm_openai_api",
+      "name": "Token Router LLM",
+      "config": {
+        "profile": "custom",
+        "custom": {
+          "apikey": "${ROCKETRIDE_TOKENROUTER_KEY}",
+          "base_url": "${ROCKETRIDE_TOKENROUTER_BASE_URL}",
+          "model": "${ROCKETRIDE_TOKENROUTER_MODEL}",
+          "modelTotalTokens": 128000
+        },
+        "parameters": {}
+      },
+      "ui": {
+        "position": {
+          "x": 702,
+          "y": 65
+        },
+        "nodeType": "default",
+        "formDataValid": true
+      },
+      "input": [
+        {
+          "lane": "questions",
+          "from": "prompt_1"
+        }
+      ]
+    },
+    {
+      "id": "response_answers_1",
+      "provider": "response_answers",
+      "name": "Return Analysis",
+      "config": {
+        "laneName": "analysis"
+      },
+      "ui": {
+        "position": {
+          "x": 932,
+          "y": 70.5
+        },
+        "nodeType": "default",
+        "formDataValid": true
+      },
+      "input": [
+        {
+          "lane": "answers",
+          "from": "llm_openai_api_1"
+        }
+      ]
+    }
+  ],
+  "source": "webhook_1",
+  "project_id": "7f788d4e-69ea-4217-b5df-c3228d717c3e",
+  "version": 1,
+  "isLocked": false,
+  "snapToGrid": true,
+  "snapGridSize": [
+    10,
+    10
+  ],
+  "docRevision": 1
+}
